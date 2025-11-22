@@ -63,3 +63,36 @@ export const STORELOCATORS = {
     }
 
 };
+
+export const STOREPRODUCTS = [ 
+    {
+        name: 'Taser',
+        price: '55.00',
+        quantity: '5'
+    },
+    {
+        name: 'Katana',
+        price: '145.50',
+        quantity: '19'
+    },
+    {
+        name: 'Kunai',
+        price: '21.45',
+        quantity: '100'
+    },
+    {
+        name: 'Hockey stick',
+        price: '89.77',
+        quantity: '3'
+    },
+    {
+        name: 'Baseball bat',
+        price: '265.99',
+        quantity: '6'
+    },
+    {
+        name: 'Toothpick',
+        price: '0.01',
+        quantity: '-1'
+    }
+];
