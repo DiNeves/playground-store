@@ -14,8 +14,8 @@ export class InventoryPage {
         this.productQuantity = page.getByTestId(INVENTORYLOCATORS.productQuantity);
 
         this.addProductButton = page.getByTestId(INVENTORYLOCATORS.addProductButton);
-
-       this.rows = page.getByTestId(INVENTORYLOCATORS.table.list).getByRole(INVENTORYLOCATORS.table.listItem);
+        
+        this.rows = page.getByTestId(INVENTORYLOCATORS.table.list).getByRole(INVENTORYLOCATORS.table.listItem);
     }
 
     async fillProductName(productName) {
