@@ -36,4 +36,25 @@ export class CatalogPage {
         return this.productQuantity(product);
     }
 
+    async validateOutOfStockButtonInAllItems(){
+        await test.step('Validate Out of Stock button and disabled state for all out of stock products', async () => {
+            const allProducts = await this.tableListItems.all();
+            for (const product of allProducts){
+                const unitsLocator = product.locator('text=units');
+                await unitsLocator.click();
+                const text = await unitsLocator.textContent();
+                const stockQuantity = parseInt(text);
+                const button = product.getByRole('button');
+
+                if (stockQuantity === 0){
+                    await expect(button).toHaveText('Out of Stock');
+                    await expect(button).toBeDisabled();
+                } else{
+                    await expect(button).toHaveText('Add to Cart');
+                    await expect(button).toBeEnabled();
+                }
+            }
+        });
+    }
+
 }
