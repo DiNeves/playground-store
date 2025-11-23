@@ -14,6 +14,10 @@ export const INVENTORYLOCATORS = {
         listItem: 'listitem',
         productName: 'inventory-product-name-',
         productPrice: 'inventory-product-price-value-',
-        productQuantity: 'inventory-product-quantity-'
+        productQuantity: 'inventory-product-quantity-',
+
+        //Increase and Decrease buttons
+        increaseButton: 'inventory-product-increase-',
+        decreaseButton: 'inventory-product-decrease-'
     }
 };
