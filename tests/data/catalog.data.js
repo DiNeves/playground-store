@@ -1,12 +1,4 @@
 export const CATALOGLOCATORS = {
-
-    // Input-boxes
-    // productName: 'inventory-input-name',
-    // productPrice: 'inventory-input-price',
-    // productQuantity: 'inventory-input-quantity',
-
-    // Buttons
-    // addProductButton: 'inventory-submit-button',
     
     //Table list elements
     table: {
