@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { STORELOCATORS, STOREPRODUCTS } from '../data/store.data';
+import { STORELOCATORS } from '../data/store.data';
 import { INVENTORYLOCATORS } from '../data/inventory.data';
 
 export class InventoryPage {
@@ -13,8 +13,11 @@ export class InventoryPage {
         this.productPrice = page.getByTestId(INVENTORYLOCATORS.productPrice);
         this.productQuantity = page.getByTestId(INVENTORYLOCATORS.productQuantity);
 
+        this.addProductButton = page.getByTestId(INVENTORYLOCATORS.addProductButton);
+
+       this.rows = page.getByTestId(INVENTORYLOCATORS.table.list).getByRole(INVENTORYLOCATORS.table.listItem);
     }
-    
+
     async fillProductName(productName) {
         await test.step('Fill product name', async () => {
             await this.productName.fill(productName);
@@ -35,9 +38,27 @@ export class InventoryPage {
 
     async fillProductRequiredFields(product) {
         await test.step('Fill product required fields', async () => {
-            await this.productName.fill(product.productName);
-            await this.productPrice.fill(product.productPrice);
-            await this.productQuantity.fill(product.productQuantity);
+            await this.productName.fill(product.name);
+            await this.productPrice.fill(product.price);
+            await this.productQuantity.fill(product.quantity);
+        });
+    };
+
+    async clickAddProductButton() {
+        await test.step('Click on Add product button', async () => {
+            await this.addProductButton.click();
+        });
+    };
+
+    async validateProductAddedOnTable(product) {
+        await test.step('Validate if product exists on list', async () => {
+            // Get only the table's line that contains the product name.
+            const row = this.rows.filter({ hasText: product.name });
+
+            // Get fields from the table row.
+            await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productName + "]")).toHaveText(product.name);
+            await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productPrice + "]")).toHaveText(product.price);
+            await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productQuantity + "]")).toHaveText(product.quantity);
         });
     };
 }
