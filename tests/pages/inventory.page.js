@@ -61,4 +61,26 @@ export class InventoryPage {
             await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productQuantity + "]")).toHaveText(product.quantity);
         });
     };
+
+    async clickIncreaseStockButton(productName) {
+        await test.step('Click on "+" button for product: ' + productName, async () => {
+            const row = this.rows.filter({ hasText: productName });
+            await row.locator("[data-testid^=" + INVENTORYLOCATORS.table.increaseButton + "]").click();
+        });
+    }
+
+    async clickDecreaseStockButton(productName) {
+        await test.step('Click on "-" button for product: ' + productName, async () => {
+            const row = this.rows.filter({ hasText: productName });
+            await row.locator("[data-testid^=" + INVENTORYLOCATORS.table.decreaseButton + "]").click();
+        });
+    }
+
+    async getProductStockQuantity(productName) {
+        return await test.step('Get stock quantity for product: ' + productName, async () => {
+            const row = this.rows.filter({ hasText: productName });
+            const quantityText = await row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productQuantity + "]").textContent();
+            return parseInt(quantityText, 10);
+        });
+    }
 }
