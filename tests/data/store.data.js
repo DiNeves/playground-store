@@ -88,7 +88,7 @@ export const STOREPRODUCTS = [
     {
         name: 'Hockey stick',
         price: '89.77',
-        quantity: '3'
+        quantity: '0'
     },
     {
         name: 'Baseball bat',
