@@ -81,13 +81,18 @@ export const STOREPRODUCTS = [
         quantity: '100'
     },
     {
+        name: 'Shuriken',
+        price: '65.37',
+        quantity: '100'
+    },
+    {
         name: 'Hockey stick',
         price: '89.77',
         quantity: '3'
     },
     {
         name: 'Baseball bat',
-        price: '265.99',
+        price: '-265.99',
         quantity: '6'
     },
     {
