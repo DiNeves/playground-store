@@ -68,7 +68,8 @@ export const STOREPRODUCTS = [
     {
         name: 'Taser',
         price: '55.00',
-        quantity: '5'
+        quantity: '5',
+        addedQuantity: '1'
     },
     {
         name: 'Katana',

@@ -6,6 +6,7 @@ export const CARTLOCATORS = {
         listItem: 'listitem',
 
         productName: 'cart-item-name-',
+        productDetails: 'cart-item-quantity-price-',
         productQuantity: 'cart-item-quantity-',
 
         productPrice: 'cart-item-price-value-',

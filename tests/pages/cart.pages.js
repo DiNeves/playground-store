@@ -14,9 +14,11 @@ export class CartPage {
         this.tableProduct = (product) => this.tableListItems.filter({ hasText: `${product}` });
 
         this.productName = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productName + "]");
-        this.productQuantity = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productQuantity + "]");
 
-        this.productPrice = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productPrice + "]");
+        this.productDetails = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productDetails + "]");
+        this.productQuantity = (product) => this.productDetails(product).locator("[data-testid^=" + CARTLOCATORS.table.productQuantity + "]");
+
+        this.productPrice = (product) => this.productDetails(product).locator("[data-testid^=" + CARTLOCATORS.table.productPrice + "]");
         this.productTotalPrice = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productTotalPrice + "]");
 
     }
@@ -27,11 +29,15 @@ export class CartPage {
 
             // Get fields from the table row.
             await expect(this.productName(product.name)).toHaveText(product.name);
-            await expect(this.productQuantity(product.quantity)).toHaveText(product.quantity);
-            await expect(this.productPrice(product.price)).toHaveText(product.price);
+
+            const productQuantity = await this.productQuantity(product.name).textContent();
+            await expect(productQuantity).toBe(product.addedQuantity);
+
+            const productPrice = await this.productPrice(product.name).textContent();
+            await expect(productPrice).toBe(product.price);
             
-            // FIXME
-            // await expect(this.productTotalPrice(product.price)).toHaveText(product.price);
+            const productTotalPrice =  Number(await this.productTotalPrice(product.name).textContent());
+            await expect(productTotalPrice).toBe(productQuantity*productPrice);
         });
     }
 }
