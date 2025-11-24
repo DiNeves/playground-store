@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { STORELOCATORS } from '../data/store.data';
+import { STORELOCATORS } from '../data/storeMenu.data'; 
 import { CATALOGLOCATORS } from '../data/catalog.data';
 
 export class CatalogPage {
