@@ -1,14 +1,14 @@
 import { test } from '@playwright/test';
-import { StoreMainPage } from '../pages/store.page';
+import { StoreMenuPage } from '../pages/storeMenu.page'; 
 import { CatalogPage } from '../pages/catalog.page';
 
 
 test.describe('Catalog section', () => {
 
     test.beforeEach(async ({ page }) => {
-        const storeMainPage = new StoreMainPage(page);
-        await storeMainPage.navigateToStorePage();
-        await storeMainPage.navigateToCatalogTab();
+        const storeMenuPage = new StoreMenuPage(page);
+        await storeMenuPage.navigateToStorePage();
+        await storeMenuPage.navigateToCatalogTab();
     });
 
     /**
@@ -21,13 +21,18 @@ test.describe('Catalog section', () => {
      * And   the item should appear in the Cart page
     */
     test('Add item to cart from catalog', async ({ page }) => {
+        //MEXI AQUI
         const catalogPage = new CatalogPage(page);
+        const storeMenuPage = new StoreMenuPage(page);
+
         await catalogPage.addProductToCart('Lightsaber (Star Wars)');
+        await storeMenuPage.navigateToCartTab();
+        //validateProductSuccessfullyAddedtoCart
     });
 
     /**
      * Scenario 2: Prevent adding out-of-stock items
-     * 
+     *
      * Given an item has quantity 0
      * Then the button should display "Out of Stock"
      * And the button should be disabled

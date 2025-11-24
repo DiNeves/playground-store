@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { STORELOCATORS, STORELABELS } from '../data/store.data';
+import { STORELOCATORS, STORELABELS } from '../data/storeMenu.data';
 
-export class StoreMainPage {
+export class StoreMenuPage {
     constructor(page) {
         this.page = page;
         

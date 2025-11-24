@@ -1,14 +1,14 @@
-import { expect, test } from '@playwright/test';
-import { STOREPRODUCTS } from '../data/store.data';
-import { StoreMainPage } from '../pages/store.page';
+import { test, expect } from '@playwright/test';
+import { STOREPRODUCTS } from '../data/storeMenu.data'; 
+import { StoreMenuPage } from '../pages/storeMenu.page';
 import { InventoryPage } from '../pages/inventory.page';
 
 test.describe('Inventory section', () => {
 
     test.beforeEach(async ({ page }) => {
-        const storeMainPage = new StoreMainPage(page);
-        await storeMainPage.navigateToStorePage();
-        await storeMainPage.navigateToInventoryTab();
+        const storeMenuPage = new StoreMenuPage(page);
+        await storeMenuPage.navigateToStorePage();
+        await storeMenuPage.navigateToInventoryTab();
     });
 
     for (const product of STOREPRODUCTS) {
@@ -49,7 +49,7 @@ test.describe('Inventory section', () => {
             await inventoryPage.clickAddProductButton();
             await inventoryPage.validateProductAddedOnTable(product);
 
-            //Obtain the inital stock quantity
+            // Obtain the inital stock quantity
             let initialQuantity = await inventoryPage.getProductStockQuantity(product.name);
 
             // Increase stock quantity by 1

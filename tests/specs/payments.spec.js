@@ -1,12 +1,12 @@
 import { test } from '@playwright/test';
-import { StoreMainPage } from '../pages/store.page';
+import { StoreMenuPage } from '../pages/storeMenu.page'; 
 
 test.describe('Payments section', () => {
 
     test.beforeEach(async ({ page }) => {
-        const storeMainPage = new StoreMainPage(page);
-        await storeMainPage.navigateToStorePage();
-        await storeMainPage.navigateToPaymentsTab();
+        const storeMenuPage = new StoreMenuPage(page);
+        await storeMenuPage.navigateToStorePage();
+        await storeMenuPage.navigateToPaymentsTab();
     });
 
     /**
@@ -19,8 +19,8 @@ test.describe('Payments section', () => {
      * And
     */
     test('Add Payments test here', async ({ page }) => {
-        const storeMainPage = new StoreMainPage(page);
-        // await storeMainPage.navigateToHomeTab();
+        const storeMenuPage = new StoreMenuPage(page);
+        // await storeMenuPage.navigateToHomeTab();
     });
 
 });
