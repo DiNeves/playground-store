@@ -10,5 +10,11 @@ export const PAYMENTSLOCATORS = {
     },
 
     //button
-    confirmPaymentButton: 'payment-confirm-button'
+    confirmPaymentButton: 'payment-confirm-button',
+
+    //Labels
+    labels: {
+        pageTitle: 'Payment',
+        alertMessage: 'Please select a payment method!'
+    }
 }

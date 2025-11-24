@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { PAYMENTSLOCATORS } from "../data/payments.data";
-import { STORELABELS } from '../data/storeMenu.data';
+import { STORELABELS, STORELOCATORS } from '../data/storeMenu.data';
+import { ORDERSLOCATORS } from '../data/orders.data';
 
 export class PaymentPage{
     constructor(page){
@@ -23,7 +24,20 @@ export class PaymentPage{
 
     async validateRedirectToOrdersPage(){
         await test.step('Validate Redirect to Orders page', async () => {
-            await expect(this.page.getByRole('heading', { name: STORELABELS.orders.pageTitle })).toBeVisible();
+            await expect(this.page.getByRole('heading', { name: ORDERSLOCATORS.labels.pageTitle })).toBeVisible();
         });
     }
+
+    async clickConfirmPaymentWithoutSelectingMethod(){
+        await test.step('Click on "Confirm Payment" button without selecting a payment method', async () => {
+            this.page.once('dialog', async dialog => {
+                expect(dialog.message()).toBe(PAYMENTSLOCATORS.labels.alertMessage);
+                await dialog.accept();
+            });
+            await this.confirmPaymentButton.click();
+            await expect(this.page.getByRole('heading', { name: PAYMENTSLOCATORS.labels.pageTitle })).toBeVisible();
+        });
+    }
+
+    
 }
