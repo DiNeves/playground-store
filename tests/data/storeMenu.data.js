@@ -74,31 +74,37 @@ export const STOREPRODUCTS = [
     {
         name: 'Katana',
         price: '145.50',
-        quantity: '19'
+        quantity: '19',
+        addedQuantity: '9'
     },
     {
         name: 'Kunai',
         price: '21.45',
-        quantity: '100'
+        quantity: '100',
+        addedQuantity: '13'
     },
     {
         name: 'Shuriken',
         price: '65.37',
-        quantity: '100'
+        quantity: '100',
+        addedQuantity: '19'
     },
     {
         name: 'Hockey stick',
         price: '89.77',
-        quantity: '0'
+        quantity: '0',
+        addedQuantity: '0'
     },
     {
         name: 'Baseball bat',
         price: '-265.99',
-        quantity: '6'
+        quantity: '6',
+        addedQuantity: '0'
     },
     {
         name: 'Toothpick',
         price: '0.01',
-        quantity: '-1'
+        quantity: '-1',
+        addedQuantity: '0'
     }
 ];

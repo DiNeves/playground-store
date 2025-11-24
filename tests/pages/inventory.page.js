@@ -14,7 +14,7 @@ export class InventoryPage {
         this.productQuantity = page.getByTestId(INVENTORYLOCATORS.productQuantity);
 
         this.addProductButton = page.getByTestId(INVENTORYLOCATORS.addProductButton);
-        
+
         this.rows = page.getByTestId(INVENTORYLOCATORS.table.list).getByRole(INVENTORYLOCATORS.table.listItem);
     }
 
@@ -59,6 +59,22 @@ export class InventoryPage {
             await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productName + "]")).toHaveText(product.name);
             await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productPrice + "]")).toHaveText(product.price);
             await expect(row.locator("[data-testid^=" + INVENTORYLOCATORS.table.productQuantity + "]")).toHaveText(product.quantity);
+        });
+    };
+
+    async addAndValidateProduct(product) {
+        await test.step('Add and validate if product exists on list', async () => {
+            await this.fillProductRequiredFields(product);
+            await this.clickAddProductButton();
+            await this.validateProductAddedOnTable(product);
+        });
+    };
+
+    async addMultipleProducts(productsList) {
+        await test.step('Add multiple products to inventory', async () => {
+            for (const product of productsList) {
+                await this.addAndValidateProduct(product);
+            };
         });
     };
 

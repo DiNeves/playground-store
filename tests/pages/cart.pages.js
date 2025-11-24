@@ -22,8 +22,8 @@ export class CartPage {
         this.productPrice = (product) => this.productDetails(product).locator("[data-testid^=" + CARTLOCATORS.table.productPrice + "]");
         this.productTotalPrice = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productTotalPrice + "]");
 
+        this.cartTotalPrice = page.getByTestId(CARTLOCATORS.cartTotalPrice);
         this.goToPaymentButton = page.getByTestId(CARTLOCATORS.goToPaymentButton);
-
     }
 
     async validateProductSuccessfullyAddedtoCart(product) {
@@ -38,9 +38,34 @@ export class CartPage {
 
             const productPrice = await this.productPrice(product.name).textContent();
             await expect(productPrice).toBe(product.price);
-            
-            const productTotalPrice =  Number(await this.productTotalPrice(product.name).textContent());
-            await expect(productTotalPrice).toBe(productQuantity*productPrice);
+
+            const productTotalPrice = parseFloat(await this.productTotalPrice(product.name).textContent());
+            await expect(parseFloat(productTotalPrice).toFixed(2)).toBe(parseFloat(productQuantity * productPrice).toFixed(2));
+        });
+    }
+
+    async validateProductListAddedtoCart(productList) {
+        await test.step('Validate if product list is successfully added', async () => {
+            for (const product of productList) {
+                if (product.addedQuantity > 0) {
+                    await this.validateProductSuccessfullyAddedtoCart(product);
+                }
+            }
+        });
+    }
+
+    async validateTotalCartPrice() {
+
+        await test.step('Validate if the total cart price is correctly calculated', async () => {
+
+            let totalCartPrice = parseFloat('0.00');
+
+            const count = await this.tableListItems.count();
+            for (let i = 0; i < count; ++i) {
+                const val = parseFloat(await this.tableListItems.locator("[data-testid^=" + CARTLOCATORS.table.productTotalPrice + i + "]").textContent()).toFixed(2);
+                totalCartPrice = (+totalCartPrice + +parseFloat(val)).toFixed(2)
+            }
+            await expect(parseFloat(await this.cartTotalPrice.textContent()).toFixed(2)).toBe(parseFloat(totalCartPrice).toFixed(2));
         });
     }
 
@@ -50,7 +75,7 @@ export class CartPage {
         });
     }
 
-    async validateRedirectToPaymentPage(){
+    async validateRedirectToPaymentPage() {
         await test.step('Validate redirect to Payment page', async () => {
             await expect(this.page.getByRole('heading', { name: PAYMENTSLOCATORS.labels.pageTitle })).toBeVisible();
         });
