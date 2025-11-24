@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { PAYMENTSLOCATORS } from "../data/payments.data";
+import { STORELABELS } from '../data/storeMenu.data';
 
 export class PaymentPage{
     constructor(page){
@@ -22,7 +23,7 @@ export class PaymentPage{
 
     async validateRedirectToOrdersPage(){
         await test.step('Validate Redirect to Orders page', async () => {
-            await expect(this.page.getByRole('heading', { name: 'Orders' })).toBeVisible();
+            await expect(this.page.getByRole('heading', { name: STORELABELS.orders.pageTitle })).toBeVisible();
         });
     }
 }
