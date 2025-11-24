@@ -16,4 +16,5 @@ export const CARTLOCATORS = {
     
     cartTotalPrice: 'cart-total-value',
 
+    goToPaymentButton: 'cart-go-to-payment'
 };
