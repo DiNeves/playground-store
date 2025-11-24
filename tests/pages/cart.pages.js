@@ -21,6 +21,8 @@ export class CartPage {
         this.productPrice = (product) => this.productDetails(product).locator("[data-testid^=" + CARTLOCATORS.table.productPrice + "]");
         this.productTotalPrice = (product) => this.tableProduct(product).locator("[data-testid^=" + CARTLOCATORS.table.productTotalPrice + "]");
 
+        this.goToPaymentButton = page.getByTestId(CARTLOCATORS.goToPaymentButton);
+
     }
 
     async validateProductSuccessfullyAddedtoCart(product) {
@@ -38,6 +40,18 @@ export class CartPage {
             
             const productTotalPrice =  Number(await this.productTotalPrice(product.name).textContent());
             await expect(productTotalPrice).toBe(productQuantity*productPrice);
+        });
+    }
+
+    async clickGoToPaymentButton() {
+        await test.step('Click on "Go to Payment" button', async () => {
+            await this.goToPaymentButton.click();
+        });
+    }
+
+    async validateRedirectToPaymentPage(){
+        await test.step('Validate redirect to Payment page', async () => {
+            await expect(this.page.getByRole('heading', { name: 'Payment' })).toBeVisible();
         });
     }
 }
