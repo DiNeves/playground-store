@@ -62,4 +62,32 @@ test.describe('Payments section', () => {
             await paymentPage.validateRedirectToOrdersPage();
         });
     }
+
+    /**
+     * Scenario 3: Block payment without method
+     * Given I have items in the cart
+     * When I click "Confirm Payment" without selecting a method
+     * Then an alert should appear
+     * And the payment should not be completed
+     */
+    test('Validate alert when confirming payment without selecting a method', async ({ page }) => {
+        const storeMenuPage = new StoreMenuPage(page);
+        const paymentPage = new PaymentPage(page);
+        const inventoryPage = new InventoryPage(page);
+        const catalogPage = new CatalogPage(page);
+        const cartPage = new CartPage(page);
+
+        const product = STOREPRODUCTS[0];
+
+        await test.step('Pre-Conditions: Create Product - Add to Cart - Go to Payment', async () => {
+            await storeMenuPage.navigateToInventoryTab();
+            await inventoryPage.fillProductRequiredFields(product);
+            await inventoryPage.clickAddProductButton();
+            await storeMenuPage.navigateToCatalogTab();
+            await catalogPage.addProductToCart(product.name);
+            await storeMenuPage.navigateToCartTab();
+            await cartPage.clickGoToPaymentButton();
+        });
+        await paymentPage.clickConfirmPaymentWithoutSelectingMethod();
+    });
   });
