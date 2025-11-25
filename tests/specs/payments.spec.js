@@ -3,9 +3,10 @@ import { StoreMenuPage } from '../pages/storeMenu.page';
 import { PaymentPage } from '../pages/payments.page';
 import { InventoryPage } from '../pages/inventory.page';
 import { CatalogPage } from '../pages/catalog.page';
-import { CartPage } from '../pages/cart.pages';
+import { CartPage } from '../pages/cart.page';
 import { PAYMENTSLOCATORS } from '../data/payments.data';
 import { STOREPRODUCTS } from '../data/storeMenu.data';
+import { StorePage } from '../pages/store.page';
 
 test.describe('Payments section', () => {
 
@@ -15,18 +16,18 @@ test.describe('Payments section', () => {
         await storeMenuPage.navigateToPaymentsTab();
     });
 
-    /**
-     * Scenario 1: Add scenario here
+     /**
+     * Scenario 1: Validate payment summary
      * 
-     * Given
-     * When
-     * And
-     * Then
-     * And
+     * Given I have items in the cart
+     * When  I navigate to the Payments page
+     * Then  I should see a summary with name, quantity, and subtotal
+     * And   I should see the total amount at the bottom.
+     * 
     */
-    test('Add Payments test here', async ({ page }) => {
-        const storeMenuPage = new StoreMenuPage(page);
-        // await storeMenuPage.navigateToHomeTab();
+    test('Display cart items and totals in cart page', async ({ page }) => {
+        const storePage = new StorePage(page);
+        await storePage.addAndValidatePaymentSummary(STOREPRODUCTS);
     });
 
     /**

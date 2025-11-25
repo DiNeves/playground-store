@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { STORELABELS, STORELOCATORS } from '../data/storeMenu.data';
+import { STORELOCATORS } from '../data/storeMenu.data';
 import { CARTLOCATORS } from '../data/cart.data';
 import { PAYMENTSLOCATORS } from '../data/payments.data';
 

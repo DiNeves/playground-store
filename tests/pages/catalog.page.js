@@ -19,6 +19,11 @@ export class CatalogPage {
 
     }
 
+    // An alternative aproach to list index (not so dynamic and dependent on the product insert sequence and its place on the list)
+    quantity(index) {
+        return this.page.getByTestId('catalog-item-quantity-' + index);
+    }
+
     async addProductToCart(product) {
 
         const initialQuantity = Number((await this.productQuantity(product).textContent()).replace(' units', ''));
