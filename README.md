@@ -4,7 +4,7 @@
 
 ## 📖 About The Project
 
-This project automates the testing of the **Test Playground Store**, ensuring the quality and stability of critical business flows.
+This project automates the testing of the **Playground Store**, ensuring the quality and stability of critical business flows.
 
 The framework is built using **Playwright** and follows the **Page Object Model (POM)** design pattern to ensure code reusability and maintainability. It also implements **Data-Driven Testing** to validate multiple scenarios dynamically.
 
