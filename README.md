@@ -23,18 +23,30 @@ The project follows a strict modular structure:
 
 ```text
 ├── 📁 data          # Static data (Products, Locators, Labels)
+│   ├── cart.data.js
+│   ├── catalog.data.js
 │   ├── inventory.data.js
-│   ├── orders.data.js
-│   ├── ...
+|   ├── orders.data.js
+│   ├── payments.data.js
+│   ├── storeMenu.data.js
 ├── 📁 pages         # Page Object Classes (Interaction logic)
-│   ├── inventory.page.js
+│   ├── cart.page.js
 │   ├── catalog.page.js
-│   ├── ...
+│   ├── inventory.page.js
+|   ├── orders.page.js
+│   ├── payments.page.js
+│   ├── store.page.js
+│   ├── storeMenu.page.js
 ├── 📁 specs         # Test Files (Scenarios)
+│   ├── cart.spec.js
+│   ├── catalog.spec.js
 │   ├── inventory.spec.js
 │   ├── orders.spec.js
-│   ├── ...
+│   ├── payments.spec.js
+│   ├── storeFlow.spec.js
+│   ├── storeMenu.spec.js
 ├── package.json
+├── package-lock.json
 └── playwright.config.js
 ```
 
@@ -67,24 +79,28 @@ Follow these steps to get a local copy up and running.
 You can run the tests in different modes depending on your needs.
 
 **Run all tests (Headless mode)**
+
 Executes all specs in the background.
 ```bash
 npx playwright test
 ```
 
 **Run with UI Mode (Recommended for Debugging) 🕵️**
+
 Opens an interactive interface to watch the tests running step-by-step and inspect logs.
 ```bash
 npx playwright test --ui
 ```
 
 **Run a specific test file**
+
 Example: Run only the Order scenarios.
 ```bash
 npx playwright test specs/orders.spec.js
 ```
 
 **View the Report**
+
 After a run, generate an HTML report to see passes, failures, and screenshots.
 ```bash
 npx playwright show-report
@@ -93,12 +109,13 @@ npx playwright show-report
 ---
 
 ## 👥 Meet the Team
+
 This project was developed by a dedicated team of QA Engineers.
 
 | Name | Role | 
 | :--- | :--- | 
-| **Tatiana Taketsuma** | QA Automation Engineer | 
 | **Diana Neves** | QA Automation Engineer | 
+| **Tatiana Taketsuma** | QA Automation Engineer | 
 
 
 ---
