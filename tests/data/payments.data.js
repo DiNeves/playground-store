@@ -1,5 +1,21 @@
 export const PAYMENTSLOCATORS = {
     
+    //Table list elements
+    table: {
+        list: 'payment-cart-list',
+        listItem: 'listitem',
+
+        productName: 'payment-item-name-',
+        productDetails: 'payment-item-quantity-price-',
+        productQuantity: 'payment-item-quantity-',
+
+        productPrice: 'payment-item-price-value-',
+        productTotalPrice: 'payment-item-total-value-',
+     
+    },
+
+    paymentTotalPrice: 'payment-total-value',
+
     // Input-boxes
     paymentMethods: {
         mbway: 'payment-method-label-MBWay',

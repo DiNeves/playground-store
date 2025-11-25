@@ -1,9 +1,10 @@
 import { test } from '@playwright/test';
 import { StoreMenuPage } from '../pages/storeMenu.page'; 
-import { CartPage } from '../pages/cart.pages';
+import { CartPage } from '../pages/cart.page';
 import { STOREPRODUCTS } from '../data/storeMenu.data';
 import { InventoryPage } from '../pages/inventory.page';
 import { CatalogPage } from '../pages/catalog.page';
+import { StorePage } from '../pages/store.page';
 
 test.describe('Cart section', () => {
 
@@ -13,18 +14,17 @@ test.describe('Cart section', () => {
         await storeMenuPage.navigateToCartTab();
     });
 
-    /**
-     * Scenario 1: Add scenario here
+     /**
+     * Scenario 1: Display cart items and totals in cart page
      * 
-     * Given
-     * When
-     * And
-     * Then
-     * And
+     * Given I have added items to the cart
+     * When  I visit the Cart page
+     * Then  each item name, quantity, and subtotal should be displayed
+     * And   the total amount should be correctly calculated.
     */
-    test('Add Cart test here', async ({ page }) => {
-        const storeMenuPage = new StoreMenuPage(page);
-        // await storeMenuPage.navigateToHomeTab();
+    test('Display cart items and totals in cart page', async ({ page }) => {
+        const storePage = new StorePage(page);
+        await storePage.addAndValidateDataProductListToCart(STOREPRODUCTS);
     });
 
     /**
