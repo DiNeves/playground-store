@@ -9,5 +9,8 @@ export const ORDERSLOCATORS = {
     table: {
         list: 'orders-list',
         listItem: 'listitem',     
+        date: 'order-date-',
+        paymentMethod: 'order-payment',
+        totalValue: 'order-total-value-'
     }
 }
