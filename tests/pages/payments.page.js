@@ -91,6 +91,7 @@ export class PaymentPage {
     async clickConfirmPaymentWithoutSelectingMethod() {
         await test.step('Click on "Confirm Payment" button without selecting a payment method', async () => {
             this.page.once('dialog', async dialog => {
+                expect(dialog.type()).toBe('alert');
                 expect(dialog.message()).toBe(PAYMENTSLOCATORS.labels.alertMessage);
                 await dialog.accept();
             });
