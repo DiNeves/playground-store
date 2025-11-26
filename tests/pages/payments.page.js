@@ -3,6 +3,13 @@ import { PAYMENTSLOCATORS } from "../data/payments.data";
 import { STORELOCATORS } from '../data/storeMenu.data';
 import { ORDERSLOCATORS } from '../data/orders.data';
 
+/**
+ * Page Object Model for the Payments tab inside the Store page.
+ * This class exposes:
+ * - navigation helpers;
+ * - actions (get, add);
+ * - expect assertions.
+ */
 export class PaymentPage {
     constructor(page) {
         this.page = page;

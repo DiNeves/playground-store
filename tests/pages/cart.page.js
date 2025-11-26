@@ -3,9 +3,18 @@ import { STORELOCATORS } from '../data/storeMenu.data';
 import { CARTLOCATORS } from '../data/cart.data';
 import { PAYMENTSLOCATORS } from '../data/payments.data';
 
+/**
+ * Page Object Model for the Cart tab inside the Store page.
+ * This class exposes:
+ * - navigation helpers;
+ * - actions (click);
+ * - expect assertions.
+ */
 export class CartPage {
     constructor(page) {
         this.page = page;
+
+        // ===== Fixed locators =====
 
         this.cartTab = page.getByTestId(STORELOCATORS.cart.tab);
         this.cartTitle = page.getByTestId(STORELOCATORS.cart.title);
