@@ -9,12 +9,17 @@ export class CatalogPage {
         this.catalogTab = page.getByTestId(STORELOCATORS.catalog.tab);
         this.catalogTitle = page.getByTestId(STORELOCATORS.catalog.title);
 
+        // find the main table list
         this.table = page.getByTestId(CATALOGLOCATORS.table.list);
+        
+        // find all rows in the table list
         this.tableListItems = this.table.getByRole(CATALOGLOCATORS.table.listItem);
+
+        // find the row for a given product
         this.tableProduct = (product) => this.tableListItems.filter({ hasText: `${product}` });
 
+        // find the below elements inside the product row above
         this.addToCartButton = (product) => this.tableProduct(product).getByRole('button', { name: CATALOGLOCATORS.table.addToCartButton });
-
         this.productQuantity = (product) => this.tableProduct(product).locator("[data-testid^=" + CATALOGLOCATORS.table.productQuantity + "]");
 
     }
@@ -26,13 +31,19 @@ export class CatalogPage {
 
     async addProductToCart(product) {
 
+        // get the initial quantity of the product before clicking on the 'Add to Cart' button
         const initialQuantity = Number((await this.productQuantity(product).textContent()).replace(' units', ''));
 
         await test.step('Click on Add to Cart button', async () => {
             await this.addToCartButton(product).click();
         });
         await test.step('Validate if quantity decreased on selected product', async () => {
+
+            // get the final quantity of the product after clicking on the 'Add to Cart' button
             const finalQuantity = Number((await this.productQuantity(product).textContent()).replace(' units', ''));
+
+            // compare the initial and final quantity values.
+            // it's expect to decrease by 1 unit.
             await expect(finalQuantity).toBe(initialQuantity - 1);
         });
     }

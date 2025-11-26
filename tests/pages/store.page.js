@@ -4,6 +4,7 @@ import { CartPage } from './cart.page';
 import { StoreMenuPage } from './storeMenu.page';
 import { InventoryPage } from './inventory.page';
 import { PaymentPage } from './payments.page';
+import { OrdersPage } from './orders.page';
 
 export class StorePage {
     constructor(page) {
@@ -14,6 +15,7 @@ export class StorePage {
         this.catalogPage = new CatalogPage(page);
         this.cartPage = new CartPage(page);
         this.paymentsPage = new PaymentPage(page);
+        this.ordersPage = new OrdersPage(page);
     }
 
     async addProductFromCatalogToCart(product) {
@@ -49,6 +51,20 @@ export class StorePage {
             await this.storeMenuPage.navigateToPaymentsTab();
             await this.paymentsPage.validateProductListExistsInPayments(productList);
             await this.paymentsPage.validateTotalPaymentSummary();
+        });
+    }
+
+    async addAndValidateOrder(productList, productListSecondOrder) {
+        await test.step('Add and validate product list from database to payments page', async () => {
+            await this.addAndValidatePaymentSummary(productList);
+            await this.paymentsPage.selectPaymentMethod('mbway');
+            await this.paymentsPage.clickConfirmPaymentButton();
+            await this.ordersPage.validateOrdersQuantity(1);
+
+            await this.addAndValidatePaymentSummary(productListSecondOrder);
+            await this.paymentsPage.selectPaymentMethod('multibanco');
+            await this.paymentsPage.clickConfirmPaymentButton();
+            await this.ordersPage.validateOrdersQuantity(2);
         });
     }
 
