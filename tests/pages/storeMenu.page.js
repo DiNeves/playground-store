@@ -1,10 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { STORELOCATORS, STORELABELS } from '../data/storeMenu.data';
 
+/**
+ * Page Object Model for navigating between Store tabs in Playground website.
+ * This class exposes:
+ * - navigation helpers;
+ * - expect assertions.
+ */
 export class StoreMenuPage {
     constructor(page) {
         this.page = page;
         
+        // ===== Fixed locators =====
         this.homeTab = page.getByTestId(STORELOCATORS.home.tab);
         this.homeTitle = page.getByTestId(STORELOCATORS.home.title);
         
@@ -24,6 +31,12 @@ export class StoreMenuPage {
         this.ordersTitle = page.getByTestId(STORELOCATORS.orders.title);
     }
 
+    // ===== Navigation =====
+
+   /**
+   * Navigate to the /store page in playground website and validate 
+   * if the main title of the page is visible and properly displayed.
+   */
     async navigateToStorePage() {
         await test.step('Go to store page', async () => {
             await this.page.goto(STORELOCATORS.goTo.storeUrl);
@@ -32,6 +45,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Home tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToHomeTab() {
         await test.step('Go to Home Store tab', async () => {
             await this.homeTab.click();
@@ -40,6 +57,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Inventory tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToInventoryTab() {
         await test.step('Go to Inventory tab', async () => {
             await this.inventoryTab.click();
@@ -48,6 +69,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Catalog tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToCatalogTab() {
         await test.step('Go to Catalog tab', async () => {
             await this.catalogTab.click();
@@ -56,6 +81,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Cart tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToCartTab() {
         await test.step('Go to Cart tab', async () => {
             await this.cartTab.click();
@@ -64,6 +93,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Payments tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToPaymentsTab() {
         await test.step('Go to Payments tab', async () => {
             await this.paymentsTab.click();
@@ -72,6 +105,10 @@ export class StoreMenuPage {
         });
     };
 
+   /**
+   * Navigate to the Orders tab inside the store page and validate if 
+   * the main title of the page is visible and properly displayed.
+   */
     async navigateToOrdersTab() {
         await test.step('Go to Orders tab', async () => {
             await this.ordersTab.click();
