@@ -108,3 +108,18 @@ export const STOREPRODUCTS = [
         addedQuantity: '0'
     }
 ];
+
+export const STOREPRODUCTS2ORDER = [ 
+    {
+        name: 'Fireball jutsu',
+        price: '651.00',
+        quantity: '9',
+        addedQuantity: '2'
+    },
+    {
+        name: 'sharingan',
+        price: '1500.00',
+        quantity: '7',
+        addedQuantity: '2'
+    }
+]

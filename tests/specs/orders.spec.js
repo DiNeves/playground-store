@@ -1,12 +1,13 @@
 import { test } from '@playwright/test';
 import { StoreMenuPage } from '../pages/storeMenu.page';
-import { STOREPRODUCTS } from '../data/storeMenu.data';
+import { STOREPRODUCTS, STOREPRODUCTS2ORDER } from '../data/storeMenu.data';
 import { PAYMENTSLOCATORS } from '../data/payments.data';
 import { InventoryPage } from '../pages/inventory.page';
 import { CatalogPage } from '../pages/catalog.page';
 import { CartPage } from '../pages/cart.page';
 import { PaymentPage } from '../pages/payments.page';
 import { OrdersPage } from '../pages/orders.page';
+import { StorePage } from '../pages/store.page';
 
 test.describe('Orders section', () => {
 
@@ -17,17 +18,15 @@ test.describe('Orders section', () => {
     });
 
     /**
-     * Scenario 1: Add scenario here
+     * Scenario 1: Display past orders
      * 
-     * Given
-     * When
-     * And
-     * Then
-     * And
+     * Given I have completed one purchase
+     * When  I open the Orders page
+     * Then  I should see a list of previous orders.
     */
-    test('Add Orders test here', async ({ page }) => {
-        const storeMenuPage = new StoreMenuPage(page);
-        // await storeMenuPage.navigateToHomeTab();
+    test('Display past orders', async ({ page }) => {
+        const storePage = new StorePage(page);
+        await storePage.addAndValidateOrder(STOREPRODUCTS, STOREPRODUCTS2ORDER);
     });
 
     /**

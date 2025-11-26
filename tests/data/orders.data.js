@@ -11,6 +11,8 @@ export const ORDERSLOCATORS = {
         listItem: 'listitem',     
         date: 'order-date-',
         paymentMethod: 'order-payment',
-        totalValue: 'order-total-value-'
+        totalValue: 'order-total-value-',
+        order: 'order-',
+        productList: 'order-items-'
     }
 }
